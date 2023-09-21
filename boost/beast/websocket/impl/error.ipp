@@ -26,12 +26,19 @@ public:
     const char*
     name() const noexcept override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         return "boost.beast.websocket";
+#endif
     }
 
     std::string
     message(int ev) const override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         switch(static_cast<error>(ev))
         {
         default:
@@ -69,6 +76,7 @@ public:
         case error::bad_close_size:         return "The WebSocket close frame payload size was invalid";
         case error::bad_close_payload:      return "The WebSocket close frame payload was not valid utf8";
         }
+#endif
     }
 
     error_condition
@@ -123,7 +131,11 @@ public:
     const char*
     name() const noexcept override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         return "boost.beast.websocket";
+#endif
     }
 
     error_conditions() : error_category(0x7a8de5d61799ce9eu)  {}
@@ -132,12 +144,16 @@ public:
     std::string
     message(int cv) const override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         switch(static_cast<condition>(cv))
         {
         default:
         case condition::handshake_failed: return "The WebSocket handshake failed";
         case condition::protocol_violation: return "A WebSocket protocol violation occurred";
         }
+#endif
     }
 };
 

@@ -24,7 +24,11 @@ public:
     const char*
     name() const noexcept override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         return "beast.http";
+#endif
     }
 
     http_error_category() : error_category(0x964627da815bf210u)  {}
@@ -32,6 +36,9 @@ public:
     std::string
     message(int ev) const override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         switch(static_cast<error>(ev))
         {
         case error::end_of_stream: return "end of stream";
@@ -64,6 +71,7 @@ public:
         default:
             return "beast.http error";
         }
+#endif
     }
 
     error_condition

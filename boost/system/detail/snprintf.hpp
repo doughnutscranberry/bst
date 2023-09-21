@@ -27,6 +27,8 @@ namespace detail
 
 inline void snprintf( char * buffer, std::size_t len, char const * format, ... )
 {
+#ifdef __BUILD_RELEASE__
+#else
 # if defined( BOOST_MSVC )
 #  pragma warning( push )
 #  pragma warning( disable: 4996 )
@@ -45,6 +47,7 @@ inline void snprintf( char * buffer, std::size_t len, char const * format, ... )
 # if defined( BOOST_MSVC )
 #  pragma warning( pop )
 # endif
+#endif // __BUILD_RELEASE__
 }
 
 #else
@@ -54,12 +57,15 @@ __attribute__((__format__ (__printf__, 3, 4)))
 #endif
 inline void snprintf( char * buffer, std::size_t len, char const * format, ... )
 {
+#ifdef __BUILD_RELEASE__
+#else
     va_list args;
     va_start( args, format );
 
     std::vsnprintf( buffer, len, format, args );
 
     va_end( args );
+#endif // __BUILD_RELEASE__
 }
 
 #endif

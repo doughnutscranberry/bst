@@ -23,7 +23,11 @@ public:
     const char*
     name() const noexcept override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         return "boost.beast";
+#endif
     }
 
     error_codes() : error_category(0x002f6e94401c6e8bu)  {}
@@ -33,12 +37,16 @@ public:
     std::string
     message(int ev) const override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         switch(static_cast<error>(ev))
         {
         default:
         case error::timeout: return
             "The socket was closed due to a timeout";
         }
+#endif
     }
 
     BOOST_BEAST_DECL
@@ -62,7 +70,11 @@ public:
     const char*
     name() const noexcept override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         return "boost.beast";
+#endif
     }
 
     error_conditions() : error_category(0x3dd0b0ce843c5b10u)  {}
@@ -72,12 +84,16 @@ public:
     std::string
     message(int cv) const override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         switch(static_cast<condition>(cv))
         {
         default:
         case condition::timeout:
             return "The operation timed out";
         }
+#endif
     }
 };
 

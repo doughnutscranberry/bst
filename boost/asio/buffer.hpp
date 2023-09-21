@@ -1959,7 +1959,11 @@ public:
   {
     if (size() > max_size() || max_size() - size() < n)
     {
+#ifdef __BUILD_RELEASE__
+      std::length_error ex("");
+#else
       std::length_error ex("dynamic_string_buffer too long");
+#endif // __BUILD_RELEASE__
       boost::asio::detail::throw_exception(ex);
     }
 
@@ -2002,7 +2006,11 @@ public:
   {
     if (size() > max_size() || max_size() - size() < n)
     {
+#ifdef __BUILD_RELEASE__
+      std::length_error ex("");
+#else
       std::length_error ex("dynamic_string_buffer too long");
+#endif // __BUILD_RELEASE__
       boost::asio::detail::throw_exception(ex);
     }
 
@@ -2232,7 +2240,11 @@ public:
   {
     if (size () > max_size() || max_size() - size() < n)
     {
+#ifdef __BUILD_RELEASE__
+      std::length_error ex("");
+#else
       std::length_error ex("dynamic_vector_buffer too long");
+#endif // __BUILD_RELEASE__
       boost::asio::detail::throw_exception(ex);
     }
 
@@ -2275,7 +2287,11 @@ public:
   {
     if (size() > max_size() || max_size() - size() < n)
     {
+#ifdef __BUILD_RELEASE__
+      std::length_error ex("");
+#else
       std::length_error ex("dynamic_vector_buffer too long");
+#endif // __BUILD_RELEASE__
       boost::asio::detail::throw_exception(ex);
     }
 

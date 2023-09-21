@@ -52,12 +52,19 @@ public:
     const char*
     name() const noexcept override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         return "boost.beast.zlib";
+#endif
     }
 
     std::string
     message(int ev) const override
     {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
         switch(static_cast<error>(ev))
         {
         case error::need_buffers: return "need buffers";
@@ -82,6 +89,7 @@ public:
         default:
             return "beast.zlib error";
         }
+#endif
     }
 
     error_condition

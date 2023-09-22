@@ -34,11 +34,18 @@ class netdb_category : public boost::system::error_category
 public:
   const char* name() const BOOST_ASIO_ERROR_CATEGORY_NOEXCEPT
   {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
     return "asio.netdb";
+#endif
   }
 
   std::string message(int value) const
   {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
     if (value == error::host_not_found)
       return "Host not found (authoritative)";
     if (value == error::host_not_found_try_again)
@@ -48,6 +55,7 @@ public:
     if (value == error::no_recovery)
       return "A non-recoverable error occurred during database lookup";
     return "asio.netdb error";
+#endif
   }
 };
 
@@ -66,16 +74,24 @@ class addrinfo_category : public boost::system::error_category
 public:
   const char* name() const BOOST_ASIO_ERROR_CATEGORY_NOEXCEPT
   {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
     return "asio.addrinfo";
+#endif
   }
 
   std::string message(int value) const
   {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
     if (value == error::service_not_found)
       return "Service not found";
     if (value == error::socket_type_not_supported)
       return "Socket type not supported";
     return "asio.addrinfo error";
+#endif
   }
 };
 
@@ -96,11 +112,18 @@ class misc_category : public boost::system::error_category
 public:
   const char* name() const BOOST_ASIO_ERROR_CATEGORY_NOEXCEPT
   {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
     return "asio.misc";
+#endif
   }
 
   std::string message(int value) const
   {
+#ifdef __BUILD_RELEASE__
+        return "";
+#else
     if (value == error::already_open)
       return "Already open";
     if (value == error::eof)
@@ -110,6 +133,7 @@ public:
     if (value == error::fd_set_failure)
       return "The descriptor does not fit into the select call's fd_set";
     return "asio.misc error";
+#endif
   }
 };
 

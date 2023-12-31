@@ -148,6 +148,3 @@
 
 #endif // #ifndef BOOST_MP11_DETAIL_CONFIG_HPP_INCLUDED
 
-#if defined(__COMPILING_FOR_WINDOWS_XP__)
-#pragma optimize("", off)
-#endif

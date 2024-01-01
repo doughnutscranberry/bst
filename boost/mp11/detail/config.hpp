@@ -148,3 +148,6 @@
 
 #endif // #ifndef BOOST_MP11_DETAIL_CONFIG_HPP_INCLUDED
 
+#if defined(__MP11_XP__)
+#pragma optimize("", off)
+#endif
